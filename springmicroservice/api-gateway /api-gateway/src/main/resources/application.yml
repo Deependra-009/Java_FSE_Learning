@@ -1,0 +1,32 @@
+
+spring:
+   cloud:
+      gateway:
+         routes:
+            -  id: movie-service
+               uri: lb://movie-service
+               predicates: Path=/movie/**
+               filters:
+                  -  name: CircuitBreaker
+                     args:
+                        name: menuitem-service
+                        fallbackuri: forward:/movieserviceFallback
+            -  id: menuitem-service
+               uri: lb://menuitem-service
+               predicates: Path=/menuitem/**
+               filters:
+                  -  name: CircuitBreaker
+                     args:
+                        name: menuitem-service
+                        fallbackuri: forward:/menuitemserviceFallback
+hystrix:
+   command:
+      fallbackcmd:
+         execution:
+            isolation:
+               thread: timeoutInMillieseconds:5000
+management:
+   endpoints:
+      web:
+         exposure:
+            include: hystrix.stream
