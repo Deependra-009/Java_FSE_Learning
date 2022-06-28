@@ -19,7 +19,7 @@ import com.jwt.modal.JwtResponse;
 import com.jwt.service.CustomUserDetailsService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class JwtController {
 	
 	@Autowired
@@ -30,6 +30,11 @@ public class JwtController {
 	
 	@Autowired
 	private JwtUtilHelper jwtutil;
+	
+	@GetMapping("/welcome1")
+	public String home() {
+		return "this is a private page";
+	}
 	
 	@PostMapping("/token")
 	public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtrequest) throws Exception{

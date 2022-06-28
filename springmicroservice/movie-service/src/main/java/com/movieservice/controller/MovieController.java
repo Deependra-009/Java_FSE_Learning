@@ -19,6 +19,8 @@ import com.movieservice.service.MovieService;
 @RequestMapping("/movie")
 public class MovieController {
 	
+	
+	
 	@Autowired
 	private MovieService service;
 	
@@ -38,5 +40,7 @@ public class MovieController {
 		return movie;
 		
 	}
+	
+	
 
 }
