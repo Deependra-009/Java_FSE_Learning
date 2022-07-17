@@ -49,7 +49,6 @@ public class CourseServiceImpl implements CourseService {
 		// TODO Auto-generated method stub
 		this.course.save(course);
 		
-		
 		return course;
 	}
 	
